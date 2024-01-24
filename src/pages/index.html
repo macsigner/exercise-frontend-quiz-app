@@ -9,45 +9,75 @@
     <title>Frontend Mentor | Frontend quiz app</title>
 </head>
 <body>
-<header></header>
-<main>
+<div class="main-wrapper">
+    <header class="main-header">
+        <h1 class="main-header__title"></h1>
+        <label class="main-header__switch-mode"><input type="checkbox">
+            <span class="mode-switch"><span class="mode-switch__switch"></span></span>
+        </label>
+    </header>
+
+    <main>
 
 
-    <!-- Quiz menu start -->
+        <!-- Quiz menu start -->
 
-    Welcome to the Frontend Quiz!
-    Pick a subject to get started.
+        <h2 class="headline-1">Welcome to the <strong>Frontend Quiz!</strong></h2>
+        <h3 class="headline-2">Pick a subject to get started.</h3>
 
-    HTML
-    CSS
-    JavaScript
-    Accessibility
+        <button class="button">
+            <figure class="button__icon"><img src="../assets/images/icon-html.svg"></figure>
+            HTML
+        </button>
+        <button class="button">
+            <figure class="button__icon"><img src="../assets/images/icon-css.svg"></figure>
+            CSS
+        </button>
+        <button class="button">
+            <figure class="button__icon"><img src="../assets/images/icon-js.svg"></figure>
+            JavaScript
+        </button>
+        <button class="button">
+            <figure class="button__icon"><img src="../assets/images/icon-accessibility.svg"></figure>
+            Accessibility
+        </button>
 
-    <!-- Quiz menu end -->
+        <!-- Quiz menu end -->
 
-    <!-- Quiz question start -->
+        <!-- Quiz question start -->
 
-    Question <!-- number --> of 10
+        <h2 class="headline-1">Question
+            <data-slot value="questionNumber"></data-slot>
+            of 10
+        </h2>
+        <p class="question"></p>
+        <label><span class="invisible">Progress: </span>
+            <progress value="3" max="10"></progress>
+        </label>
 
-    A
-    B
-    C
-    D
+        <form>
+            <label><input type="checkbox"><span class="button"><span class="button__icon">A</span></span></label>
+            <label><input type="checkbox"><span class="button"><span class="button__icon">B</span></span></label>
+            <label><input type="checkbox"><span class="button"><span class="button__icon">C</span></span></label>
+            <label><input type="checkbox"><span class="button"><span class="button__icon">D</span></span></label>
+            <button>Submit answer</button>
+        </form>
 
-    Submit answer
 
-    <!-- Quiz question end -->
+        <!-- Quiz question end -->
 
-    <!-- Quiz completed start -->
+        <!-- Quiz completed start -->
 
-    Quiz completed
-    You scored...
+        <h1>Quiz completed</h1>
+        <h2>You scored...</h2>
 
-    <!-- score --> out of 10
+        <data-slot value="score"></data-slot>
+        out of 10
 
-    <!-- Quiz completed end -->
+        <!-- Quiz completed end -->
 
-</main>
+    </main>
+</div>
 </body>
 <footer></footer>
 </html>

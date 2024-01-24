@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'Rubik';
+    src: url("../assets/fonts/Rubik-VariableFont_wght.woff2") format("woff2-variations");
+    font-style: normal;
+    font-weight: 300 900;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url("../assets/fonts/Rubik-Italic-VariableFont_wght.woff2") format("woff2-variations");
+    font-style: italic;
+    font-weight: 300 900;
+}
+
+%score {
+    font-family: Rubik;
+    font-size: 88px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+}
+
+%welcome-title-dark-bold {
+    font-family: Rubik;
+    font-size: 40px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+}
+
+%welcome-title-bold {
+    font-family: Rubik;
+    font-size: 40px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+}
+
+%welcome-title {
+    font-family: Rubik;
+    font-size: 40px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+}
+
+%welcom-title-dark {
+    font-family: Rubik;
+    font-size: 40px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+}
+
+%question {
+    font-family: Rubik;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+}
+
+%button-submit {
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: var(--white);
+}
+
+%main-title {
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+}
+
+%button {
+    @extend %main-title;
+}
+
+%button-icon {
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+}
+
+%error {
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+}
+
+%meta {
+    font-family: Rubik;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: italic;
+    line-height: 1.5;
+    letter-spacing: normal;
+}
