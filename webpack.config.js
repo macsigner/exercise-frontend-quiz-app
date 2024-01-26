@@ -44,6 +44,19 @@ export default {
         new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve('src/pages/index.html'),
+            filename: 'index.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve('src/pages/demo-index.html'),
+            filename: 'demo-index.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve('src/pages/demo-score.html'),
+            filename: 'demo-score.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve('src/pages/demo-question.html'),
+            filename: 'demo-question.html'
         }),
         new CopyPlugin({
             patterns: [

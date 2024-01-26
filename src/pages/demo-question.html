@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+
+    <title>Frontend Mentor | Frontend quiz app</title>
+</head>
+<body>
+<div class="main-wrapper">
+    <header class="main-header">
+        <h1 class="main-header__title icon-title">
+            <figure class="icon-title__icon">
+                <img src="../assets/images/icon-accessibility.svg" width="40" height="40" alt=""></figure>
+            Accessibility
+        </h1>
+        <label class="main-header__mode-switch"><input type="checkbox">
+            <span class="mode-switch"><span class="mode-switch__switch"></span></span>
+        </label>
+    </header>
+
+    <main>
+        <div>
+            <h2 class="meta-title">Question
+                <data-slot value="questionNumber"></data-slot>
+                of 10
+            </h2>
+            <p class="question">Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement
+                for
+                normal text?</p>
+            <label><span class="invisible">Progress: </span>
+                <progress value="3" max="10"></progress>
+            </label>
+
+            <form>
+                <label>
+                    <input type="radio" name="answer">
+                    <span class="button"><span class="button__icon">A</span>4.5 : 1</span></label>
+                <label>
+                    <input type="radio" name="answer">
+                    <span class="button button--valid"><span class="button__icon">B</span>4.5 : 1</span></label>
+                <label>
+                    <input type="radio" name="answer">
+                    <span class="button button--error"><span class="button__icon">C</span>4.5 : 1</span></label>
+                <label>
+                    <input type="radio" name="answer">
+                    <span class="button"><span class="button__icon">D</span>4.5 : 1</span></label>
+                <button class="button button--submit">Submit Answer</button>
+                <p class="error">Please select an answer</p>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+<footer></footer>
+</html>

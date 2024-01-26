@@ -12,7 +12,7 @@
     --button-bg-color: #FFF;
     --color-bg-accent: #F4F6FA;
     --color-error: #EE5454;
-    --color-meta: #abc1e1;
+    --color-meta: #ABC1E1;
 }
 
 *,
@@ -301,28 +301,6 @@ progress {
     border-radius: 1.2rem;
     background-color: var(--color-bg);
 
-    &__title {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1.6rem;
-        font-family: Rubik;
-        font-size: 18px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1;
-        letter-spacing: normal;
-    }
-
-    &__title-icon {
-        width: 4rem;
-        height: 4rem;
-        margin-right: 1.2rem;
-        padding: .6rem;
-        border-radius: .4rem;
-        background-color: #F6E7FF;
-    }
-
     &__score {
         font-family: Rubik;
         font-size: 88px;
@@ -342,5 +320,27 @@ progress {
         line-height: 1;
         letter-spacing: normal;
         color: var(--color-meta);
+    }
+}
+
+.icon-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.6rem;
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+
+    &__icon {
+        width: 4rem;
+        height: 4rem;
+        margin-right: 1.2rem;
+        padding: .6rem;
+        border-radius: .4rem;
+        background-color: #F6E7FF;
     }
 }

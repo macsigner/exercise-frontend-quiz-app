@@ -11,103 +11,13 @@
 <body>
 <div class="main-wrapper">
     <header class="main-header">
-        <h1 class="main-header__title"></h1>
+        <h1 class="main-header__title icon-title"></h1>
         <label class="main-header__mode-switch"><input type="checkbox">
             <span class="mode-switch"><span class="mode-switch__switch"></span></span>
         </label>
     </header>
 
-    <main>
-        <!-- Quiz menu start -->
-
-        <div>
-            <h2 class="welcome-title">Welcome to the <strong>Frontend Quiz!</strong></h2>
-            <h3 class="meta-title">Pick a subject to get started.</h3>
-
-            <ul class="subject-selection">
-                <li>
-                    <button class="button">
-                        <figure class="button__icon"><img src="../assets/images/icon-html.svg"></figure>
-                        HTML
-                    </button>
-                </li>
-                <li>
-                    <button class="button">
-                        <figure class="button__icon"><img src="../assets/images/icon-css.svg"></figure>
-                        CSS
-                    </button>
-                </li>
-                <li>
-                    <button class="button">
-                        <figure class="button__icon"><img src="../assets/images/icon-js.svg"></figure>
-                        JavaScript
-                    </button>
-                </li>
-                <li>
-                    <button class="button">
-                        <figure class="button__icon"><img src="../assets/images/icon-accessibility.svg"></figure>
-                        Accessibility
-                    </button>
-                </li>
-            </ul>
-        </div>
-        <!-- Quiz menu end -->
-
-        <!-- Quiz question start -->
-
-        <div>
-            <h2 class="meta-title">Question
-                <data-slot value="questionNumber"></data-slot>
-                of 10
-            </h2>
-            <p class="question">Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement
-                for
-                normal text?</p>
-            <label><span class="invisible">Progress: </span>
-                <progress value="3" max="10"></progress>
-            </label>
-
-            <form>
-                <label>
-                    <input type="radio" name="answer">
-                    <span class="button"><span class="button__icon">A</span>4.5 : 1</span></label>
-                <label>
-                    <input type="radio" name="answer">
-                    <span class="button button--valid"><span class="button__icon">B</span>4.5 : 1</span></label>
-                <label>
-                    <input type="radio" name="answer">
-                    <span class="button button--error"><span class="button__icon">C</span>4.5 : 1</span></label>
-                <label>
-                    <input type="radio" name="answer">
-                    <span class="button"><span class="button__icon">D</span>4.5 : 1</span></label>
-                <button class="button button--submit">Submit Answer</button>
-                <p class="error">Please select an answer</p>
-            </form>
-        </div>
-
-        <!-- Quiz question end -->
-
-        <!-- Quiz completed start -->
-        <div>
-            <h1 class="welcome-title">Quiz completed <strong>You scored...</strong></h1>
-
-            <div class="score-tile">
-                <h2 class="score-tile__title">
-                    <figure class="score-tile__title-icon">
-                        <img src="../assets/images/icon-accessibility.svg" alt="">
-                    </figure>
-                    Accessibility
-                </h2>
-                    <data-slot value="score" class="score-tile__score">8</data-slot>
-                <div class="score-tile__score">
-                </div>
-                    <span class="score-tile__meta">out of 10</span>
-            </div>
-            <button class="button button--submit">Play Again</button>
-        </div>
-        <!-- Quiz completed end -->
-
-    </main>
+    <main class="main-content"></main>
 </div>
 </body>
 <footer></footer>
