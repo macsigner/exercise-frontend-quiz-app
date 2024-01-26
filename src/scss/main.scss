@@ -4,11 +4,31 @@
 :root {
     --side-margin: 2.4rem;
     --body-bg-color: #EDF1F9;
-    --primary-color: #A729F5;
+    --color-bg: #FFF;
+    --color-primary: #A729F5;
     --title-color: #313E51;
     --meta-color: #626c7;
     --shadow-color: rgba(143, 160, 193, 0.14);
     --button-bg-color: #FFF;
+    --color-bg-accent: #F4F6FA;
+    --color-error: #EE5454;
+    --color-meta: #abc1e1;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+:where(*) {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
 }
 
 html {
@@ -21,6 +41,10 @@ body {
     @extend %question;
 
     background-color: var(--body-bg-color);
+    background-image: url('../assets/images/pattern-background-mobile-dark.svg');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-blend-mode: soft-light;
 }
 
 img,
@@ -35,9 +59,50 @@ button {
     background: transparent;
 }
 
+progress {
+    appearance: none;
+    display: block;
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+::-webkit-progress-bar {
+    height: 1.6rem;
+    border: .4rem solid var(--color-bg);
+    border-radius: 2rem;
+    background-color: var(--color-bg);
+}
+
+::-webkit-progress-value {
+    border-radius: 2rem;
+    background-color: var(--color-primary);
+}
+
+[type=checkbox],
+[type=radio] {
+    position: absolute;
+    left: -999em;
+}
+
 .main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin-right: var(--side-margin);
     margin-left: var(--side-margin);
+}
+
+.main-header {
+    flex: 0 0 auto;
+}
+
+.main-wrapper > main {
+    flex: 1 0 auto;
+}
+
+.invisible {
+    position: absolute !important;
+    inset: auto auto auto -9999em !important;
 }
 
 .button {
@@ -45,9 +110,69 @@ button {
 
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     width: 100%;
+    min-height: 6.4rem;
     margin-bottom: 1.2rem;
-    background-color: var(--button-bg-color);
+    padding: .9rem;
+    border: .3rem solid var(--color-bg);
+    border-radius: 1.2rem;
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: var(--dark-grey-blue);
+    background-color: var(--color-bg);
+
+    &--submit {
+        text-align: center;
+        justify-content: center;
+        border-color: var(--color-primary);
+        color: var(--color-bg);
+        background-color: var(--color-primary);
+    }
+
+    &--error {
+        border-color: var(--color-error);
+    }
+
+    &--valid::after,
+    &--error::after {
+        content: '';
+        width: 3.2rem;
+        height: 3.2rem;
+        margin-left: auto;
+        background-image: url('../assets/images/icon-correct.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    &--error::after {
+        background-image: url('../assets/images/icon-error.svg');
+    }
+
+    &__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 4rem;
+        height: 4rem;
+        margin-right: 1.8rem;
+        border-radius: .6rem;
+        background-color: var(--color-bg-accent);
+    }
+
+    &--error &__icon {
+        color: var(--color-bg);
+        background-color: var(--color-error);
+    }
+
+    :checked ~ & {
+        border-color: var(--color-primary);
+    }
 }
 
 .main-header {
@@ -61,11 +186,6 @@ button {
 
     &__mode-switch {
         margin-left: auto;
-    }
-
-    &__mode-switch [type=checkbox] {
-        position: absolute;
-        left: -999em;
     }
 }
 
@@ -94,7 +214,7 @@ button {
         height: 2rem;
         margin: 0 1rem;
         border-radius: 1rem;
-        background-color: var(--primary-color);
+        background-color: var(--color-primary);
         justify-content: flex-start;
     }
 
@@ -111,6 +231,10 @@ button {
     }
 }
 
+.subject-selection {
+    margin-top: 4rem;
+}
+
 .welcome-title {
     @extend %welcom-title-dark;
 
@@ -119,6 +243,7 @@ button {
     color: var(--title-color);
 
     strong {
+        display: block;
         font-weight: 500;
     }
 }
@@ -127,6 +252,95 @@ button {
     @extend %meta;
 
     margin-top: 1.6rem;
-    margin-bottom: 4rem;
+    margin-bottom: 1.2rem;
     color: var(--meta-color);
+}
+
+.question {
+    font-family: Rubik;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    margin-bottom: 2.4rem;
+}
+
+.error {
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--color-error);
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 3.2rem;
+        height: 3.2rem;
+        margin-top: -.4rem;
+        margin-right: .6rem;
+        vertical-align: middle;
+        background-image: url('../assets/images/icon-incorrect.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+.score-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding: 3.2rem;
+    border-radius: 1.2rem;
+    background-color: var(--color-bg);
+
+    &__title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.6rem;
+        font-family: Rubik;
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+    }
+
+    &__title-icon {
+        width: 4rem;
+        height: 4rem;
+        margin-right: 1.2rem;
+        padding: .6rem;
+        border-radius: .4rem;
+        background-color: #F6E7FF;
+    }
+
+    &__score {
+        font-family: Rubik;
+        font-size: 88px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+    }
+
+    &__meta {
+        font-family: Rubik;
+        font-size: 18px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        color: var(--color-meta);
+    }
 }
