@@ -57,6 +57,7 @@ svg {
 button {
     border: none;
     background: transparent;
+    cursor: pointer;
 }
 
 progress {
@@ -126,6 +127,7 @@ progress {
     letter-spacing: normal;
     color: var(--dark-grey-blue);
     background-color: var(--color-bg);
+    cursor: pointer;
 
     &--submit {
         text-align: center;
