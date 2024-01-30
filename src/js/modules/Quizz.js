@@ -12,8 +12,16 @@ class Answer {
         Object.freeze(this);
     }
 
-    get(key) {
-        return this[key];
+    getAnswer() {
+        return this.#answer;
+    }
+
+    getResult() {
+        return this.#right;
+    }
+
+    getTimeStamp() {
+        return this.#right;
     }
 }
 class Quizz {
@@ -118,7 +126,7 @@ class Quizz {
                 ${index + 1}
                 of ${this.quiz.questions.length}
             </h2>
-            <p class="question">${step.question}</p>
+            <p class="question">${this._escapeHTML(step.question)}</p>
             <label><span class="invisible">Progress: </span>
                 <progress value="${index + 1}" max="${this.quiz.questions.length}"></progress>
             </label>
@@ -135,8 +143,9 @@ class Quizz {
     }
 
     renderResult() {
-        const amount = this.#answers.reduce((p, c) => p + c.right === true ? 1 : 0, 0);
+        const amount = this.#answers.reduce((p, c) => p + (c.getResult() === true ? 1 : 0), 0);
         const total = this.quiz.questions.length;
+
         this.state.content =
             `
             <h1 class="welcome-title">Quiz completed <strong>You scored...</strong></h1>
