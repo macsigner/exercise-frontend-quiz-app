@@ -423,6 +423,32 @@
                     "answer": "Google Lighthouse"
                 }
             ]
+        },
+        {
+            "title": "Short",
+            "icon": "./assets/images/icon-accessibility.svg",
+            "questions": [
+                {
+                    "question": "What is the role of 'skip navigation' links in web accessibility?",
+                    "options": [
+                        "To skip over primary navigation to the main content",
+                        "To provide shortcuts to different sections of the website",
+                        "To help users skip unwanted sections like advertisements",
+                        "To bypass broken links in the navigation"
+                    ],
+                    "answer": "To skip over primary navigation to the main content"
+                },
+                {
+                    "question": "Which of these tools can help in checking the accessibility of a website?",
+                    "options": [
+                        "W3C Validator",
+                        "Google Lighthouse",
+                        "CSS Validator",
+                        "JavaScript Console"
+                    ],
+                    "answer": "Google Lighthouse"
+                }
+            ]
         }
     ]
 }
