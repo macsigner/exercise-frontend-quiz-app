@@ -1,6 +1,23 @@
 import {delegate} from '../helper/tools.js';
 
+class Answer {
+    #timeStamp;
+    #answer;
+    #right;
+    constructor(obj) {
+        this.#timeStamp = new Date();
+        this.#answer = obj.answer;
+        this.#right = obj.right;
+
+        Object.freeze(this);
+    }
+
+    get(key) {
+        return this[key];
+    }
+}
 class Quizz {
+    #answers;
     constructor() {
         this.title = document.querySelector('.main-header__title');
         this.main = document.querySelector('.main-content');
@@ -8,6 +25,8 @@ class Quizz {
             content: '',
             title: '',
         }
+
+        this.#answers = [];
 
         fetch('api/data.json')
             .then(data => data.json())
@@ -23,13 +42,21 @@ class Quizz {
             this.startQuiz(button.value);
         }));
 
+        document.addEventListener('click', delegate('[data-quizz="replay"]', e => {
+            this.init();
+        }));
+
         document.addEventListener('submit', delegate('#answer', e => {
             e.preventDefault();
-            console.log(e.submitter);
+
             if(e.submitter.matches('[data-quizz="next"]')) {
                 this.state.step++;
 
+                if(this.state.step < this.quiz.questions.length) {
                 this.renderQuestion();
+                } else {
+                    this.renderResult();
+                }
 
                 return;
             }
@@ -89,7 +116,7 @@ class Quizz {
         this.state.content = `
             <h2 class="meta-title">Question
                 ${index + 1}
-                of 10
+                of ${this.quiz.questions.length}
             </h2>
             <p class="question">${step.question}</p>
             <label><span class="invisible">Progress: </span>
@@ -107,6 +134,29 @@ class Quizz {
         this.render();
     }
 
+    renderResult() {
+        const amount = this.#answers.reduce((p, c) => p + c.right === true ? 1 : 0, 0);
+        const total = this.quiz.questions.length;
+        this.state.content =
+            `
+            <h1 class="welcome-title">Quiz completed <strong>You scored...</strong></h1>
+
+            <div class="score-tile">
+                <h2 class="icon-title">
+                    <figure class="score-tile__title-icon">
+                        <img src="../assets/images/icon-accessibility.svg" alt="">
+                    </figure>
+                    Accessibility
+                </h2>
+                <div class="score-tile__score">${amount}</div>
+                <span class="score-tile__meta"> out of ${total}</span>
+            </div>
+            <button class="button button--submit" data-quizz="replay">Play Again</button>
+        `;
+
+        this.render();
+    }
+
     validateForm(form) {
         const givenAnswer = (new FormData(form)).get('answer');
 
@@ -119,6 +169,7 @@ class Quizz {
         }
 
         const step = this.quiz.questions[this.state.step];
+
         form.querySelector('fieldset').setAttribute('disabled', '');
         const button = form.querySelector('[name="answer"]:checked').nextElementSibling;
 
@@ -128,6 +179,11 @@ class Quizz {
             button.classList.add('button--error');
             form.querySelector(`[type="radio"][value="${step.answer}"]`).nextElementSibling.classList.add('button--valid');
         }
+
+        this.#answers[this.state.step] = new Answer({
+            answer: givenAnswer,
+            right: givenAnswer === step.answer,
+        });
     }
 
     _escapeHTML(str) {
