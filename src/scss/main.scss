@@ -362,3 +362,15 @@ progress {
         background-color: #F6E7FF;
     }
 }
+
+[disabled] [data-quizz="submit"] {
+    display: none;
+}
+
+[data-quizz="next"] {
+    display: none;
+
+    [disabled] ~ & {
+        display: block;
+    }
+}

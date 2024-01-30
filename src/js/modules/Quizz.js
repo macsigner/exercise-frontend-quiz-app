@@ -25,6 +25,14 @@ class Quizz {
 
         document.addEventListener('submit', delegate('#answer', e => {
             e.preventDefault();
+            console.log(e.submitter);
+            if(e.submitter.matches('[data-quizz="next"]')) {
+                this.state.step++;
+
+                this.renderQuestion();
+
+                return;
+            }
 
             this.validateForm(e.target.closest('form'));
         }));
@@ -60,37 +68,40 @@ class Quizz {
         this.state.title = this.quiz.title;
         this.state.step = 0;
 
-        this.renderQuestion()
+        this.renderQuestion();
     }
 
     renderQuestion(index = this.state.step) {
         const step = this.quiz.questions[index];
 
         const answers = step.options.reduce((prev, current, i) => {
+            const answer = this._escapeHTML(current);
             return `${prev}
                 <label>
-                    <input type="radio" name="answer" value="${current}">
+                    <input type="radio" name="answer" value="${answer}">
                     <span class="button">
-                        <span class="button__icon">${String.fromCharCode(97 + i).toUpperCase()}</span>${current}
+                        <span class="button__icon">${String.fromCharCode(97 + i).toUpperCase()}</span>${answer}
                     </span>
                 </label>
             `;
         }, '');
+
         this.state.content = `
             <h2 class="meta-title">Question
-                <data-slot value="questionNumber"></data-slot>
+                ${index + 1}
                 of 10
             </h2>
-            <p class="question">Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?</p>
+            <p class="question">${step.question}</p>
             <label><span class="invisible">Progress: </span>
                 <progress value="${index + 1}" max="${this.quiz.questions.length}"></progress>
             </label>
 
             <form id="answer">
                 <fieldset>${answers}
-                    <button class="button button--submit">Submit Answer</button>
+                    <button class="button button--submit" data-quizz="submit">Submit Answer</button>
                     <p class="error"></p>
                 </fieldset>
+                <button class="button button--submit" data-quizz="next">Next</button>
             </form>
             `;
         this.render();
@@ -99,7 +110,7 @@ class Quizz {
     validateForm(form) {
         const givenAnswer = (new FormData(form)).get('answer');
 
-        if(!givenAnswer) {
+        if (!givenAnswer) {
             form.querySelector('.error').innerHTML = 'Please select an answer';
 
             return;
@@ -117,6 +128,13 @@ class Quizz {
             button.classList.add('button--error');
             form.querySelector(`[type="radio"][value="${step.answer}"]`).nextElementSibling.classList.add('button--valid');
         }
+    }
+
+    _escapeHTML(str) {
+        const text = document.createElement('div');
+        text.textContent = str;
+
+        return text.innerHTML;
     }
 }
 
