@@ -1,4 +1,4 @@
-import { delegate } from '../helper/tools.js';
+import {delegate} from '../helper/tools.js';
 
 class Quizz {
     constructor() {
@@ -26,9 +26,7 @@ class Quizz {
         document.addEventListener('submit', delegate('#answer', e => {
             e.preventDefault();
 
-            const formData = new FormData(e.target.closest('form'));
-
-            this.renderQuestion(this.state.step, formData.get('answer'));
+            this.validateForm(e.target.closest('form'));
         }));
     }
 
@@ -65,15 +63,14 @@ class Quizz {
         this.renderQuestion()
     }
 
-    renderQuestion(index = this.state.step, answer) {
+    renderQuestion(index = this.state.step) {
         const step = this.quiz.questions[index];
 
-        console.log(step);
         const answers = step.options.reduce((prev, current, i) => {
             return `${prev}
                 <label>
                     <input type="radio" name="answer" value="${current}">
-                    <span class="button ${answer ? (answer === step.answer ? 'button--valid' : 'button--error') : ''}">
+                    <span class="button">
                         <span class="button__icon">${String.fromCharCode(97 + i).toUpperCase()}</span>${current}
                     </span>
                 </label>
@@ -89,11 +86,37 @@ class Quizz {
                 <progress value="${index + 1}" max="${this.quiz.questions.length}"></progress>
             </label>
 
-            <form id="answer">${answers}
-                <button class="button button--submit">Submit Answer</button>
+            <form id="answer">
+                <fieldset>${answers}
+                    <button class="button button--submit">Submit Answer</button>
+                    <p class="error"></p>
+                </fieldset>
             </form>
             `;
         this.render();
+    }
+
+    validateForm(form) {
+        const givenAnswer = (new FormData(form)).get('answer');
+
+        if(!givenAnswer) {
+            form.querySelector('.error').innerHTML = 'Please select an answer';
+
+            return;
+        } else {
+            form.querySelector('.error').innerHTML = '';
+        }
+
+        const step = this.quiz.questions[this.state.step];
+        form.querySelector('fieldset').setAttribute('disabled', '');
+        const button = form.querySelector('[name="answer"]:checked').nextElementSibling;
+
+        if (givenAnswer === step.answer) {
+            button.classList.add('button--valid');
+        } else {
+            button.classList.add('button--error');
+            form.querySelector(`[type="radio"][value="${step.answer}"]`).nextElementSibling.classList.add('button--valid');
+        }
     }
 }
 

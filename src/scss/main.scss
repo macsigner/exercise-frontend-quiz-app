@@ -11,6 +11,7 @@
     --shadow-color: rgba(143, 160, 193, 0.14);
     --button-bg-color: #FFF;
     --color-bg-accent: #F4F6FA;
+    --color-valid: #26d782;
     --color-error: #EE5454;
     --color-meta: #ABC1E1;
 }
@@ -29,6 +30,13 @@
 ul,
 ol {
     list-style: none;
+}
+
+fieldset {
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
 html {
@@ -129,12 +137,20 @@ progress {
     background-color: var(--color-bg);
     cursor: pointer;
 
+    :where(:checked) ~ & {
+        border-color: var(--color-primary);
+    }
+
     &--submit {
         text-align: center;
         justify-content: center;
         border-color: var(--color-primary);
         color: var(--color-bg);
         background-color: var(--color-primary);
+    }
+
+    &--valid {
+        border-color: var(--color-valid)
     }
 
     &--error {
@@ -170,10 +186,6 @@ progress {
     &--error &__icon {
         color: var(--color-bg);
         background-color: var(--color-error);
-    }
-
-    :checked ~ & {
-        border-color: var(--color-primary);
     }
 }
 
@@ -279,6 +291,10 @@ progress {
     letter-spacing: normal;
     text-align: center;
     color: var(--color-error);
+
+    &:empty {
+        display: none;
+    }
 
     &::before {
         content: '';
